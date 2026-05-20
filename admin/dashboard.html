@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin Panel - Ikram Fashion Outlet</title>
+  <link rel="icon" type="image/jpeg" href="/assets/img/logo.jpg" />
+<link rel="stylesheet" href="/assets/css/admin.css" />
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/assets/js/supabase.js"></script>
+</head>
+<body style="display: none;">
+  <script>
+    if (localStorage.getItem('adminLoggedIn') !== 'true') {
+      window.location.href = '/admin/index.html';
+    } else {
+      window.addEventListener('DOMContentLoaded', async () => {
+        if (window.supabaseClient) {
+          try {
+            const { data: { session }, error } = await window.supabaseClient.auth.getSession();
+            if (error || !session || session.user.email !== 'admin@ifo.com') {
+              localStorage.removeItem('adminLoggedIn');
+              localStorage.removeItem('adminEmail');
+              window.location.href = '/admin/index.html';
+              return;
+            }
+            document.body.style.display = 'block';
+          } catch (err) {
+            console.error("Session verification failed:", err);
+            window.location.href = '/admin/index.html';
+          }
+        } else {
+          window.location.href = '/admin/index.html';
+        }
+      });
+    }
+  </script>
+  <div class="container">
+    <header class="header">
+      <div>
+        <h1><a href="/index">Admin Panel</a></h1>
+        <p>Inventory overview &amp; product management</p>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-secondary" id="logoutBtn" style="border-color: #d9534f; color: #d9534f;">⇦ Logout</button>
+        <button class="btn btn-secondary" id="openCustomize">⚙ Customize</button>
+        <button class="btn btn-primary" id="openModal">+ Add Product</button>
+      </div>
+    </header>
+
+    <section class="stats">
+      <div class="card stat">
+        <div>
+          <p class="muted">Total Products</p>
+          <h2 id="totalCount">0</h2>
+          <p class="muted">All items in catalog</p>
+        </div>
+        <div class="stat-icon"><i class="bx bx-cube-alt"></i></div>
+      </div>
+      <div class="card stat">
+        <div>
+          <p class="muted">Active Items</p>
+          <h2 id="activeCount">0</h2>
+          <p class="muted">Visible in store</p>
+        </div>
+        <div class="stat-icon"><i class="bx bx-check"></i></div>
+      </div>
+      <div class="card stat">
+        <div>
+          <p class="muted">New Arrival</p>
+          <h2 id="trendingCount">0</h2>
+          <p class="muted">Highlighted items</p>
+        </div>
+        <div class="stat-icon"><i class="bx bx-trending-up"></i></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3 class="section-title">Products</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>IMAGE</th><th>PRODUCT</th><th>CATEGORY</th>
+              <th>SUB</th><th>PRICE</th><th>TRENDING</th><th>ACTIONS</th>
+            </tr>
+          </thead>
+          <tbody id="productRows">
+            <tr><td colspan="7" class="empty">No products yet</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <!-- Add/Edit Modal -->
+  <div class="modal-backdrop" id="modal">
+    <div class="modal">
+      <button class="modal-close" id="closeModal">×</button>
+      <h2 id="modalTitle" class="modal-title">Add Product</h2>
+      <form id="productForm">
+        <label>Images (Select multiple if needed)</label>
+        <div class="image-row-multi">
+          <div class="image-previews-grid" id="imagePreview"></div>
+          <div class="upload-btn-wrapper">
+            <button class="btn-upload-more" type="button">+</button>
+            <input type="file" id="image" accept="image/*" multiple />
+          </div>
+        </div>
+
+        <label>Product name</label>
+        <input type="text" id="name" placeholder="e.g. Polo T shirt" required />
+
+        <div class="grid-2">
+          <div>
+            <label>Category</label>
+            <select id="category">
+              <option>Men's Fashion</option>
+              <option>Boys Fashion</option>
+            </select>
+          </div>
+          <div id="regularPriceField">
+            <label>Price (LKR)</label>
+            <input type="number" id="price" value="0" min="0" />
+          </div>
+        </div>
+
+        <div class="toggle-row">
+          <div><strong>Has Discount?</strong><p class="muted">Check to set an old and new price</p></div>
+          <label class="switch"><input type="checkbox" id="hasDiscount" /><span class="slider"></span></label>
+        </div>
+
+        <div id="discountFields" class="grid-2" style="display: none; margin-bottom: 1rem;">
+          <div>
+            <label>Old Price (Crossed Out)</label>
+            <input type="number" id="oldPrice" value="0" min="0" />
+          </div>
+          <div>
+            <label>New Price (Selling Price)</label>
+            <input type="number" id="newPrice" value="0" min="0" />
+          </div>
+        </div>
+
+        <div class="toggle-row">
+          <div><strong>New Arrival</strong><p class="muted">Highlight this product</p></div>
+          <label class="switch"><input type="checkbox" id="trending" /><span class="slider"></span></label>
+        </div>
+
+        <div class="toggle-row">
+          <div><strong>Active</strong><p class="muted">Visible in store</p></div>
+          <label class="switch"><input type="checkbox" id="active" checked /><span class="slider"></span></label>
+        </div>
+
+        <label id="subCategoryLabel">Men Category</label>
+        <select id="subCategory"></select>
+
+        <label>Select Size</label>
+        <div class="chip-group" id="sizeGroup"></div>
+
+        <label>Select Color</label>
+        <div class="color-group" id="colorGroup"></div>
+
+        <label>Description</label>
+        <textarea id="description" placeholder="Product description..."></textarea>
+
+        <button type="submit" class="btn btn-primary full" id="saveBtn">Save Product</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- View Modal -->
+  <div class="modal-backdrop" id="viewModal">
+    <div class="modal">
+      <button class="modal-close" id="closeView">×</button>
+      <div id="viewBody"></div>
+    </div>
+  </div>
+
+  <!-- Customize Modal -->
+  <div class="modal-backdrop" id="customizeModal">
+    <div class="modal">
+      <button class="modal-close" id="closeCustomize">×</button>
+      <h2 class="modal-title">Customize Options</h2>
+      <div id="customizeError" style="display: none; color: #d9534f; background-color: #fdf7f7; border: 1px solid #d9534f; padding: 10px; margin-bottom: 15px; border-radius: 4px; font-size: 14px; text-align: center;"></div>
+
+      <div class="tabs">
+        <button type="button" class="tab active" data-tab="men">Men Categories</button>
+        <button type="button" class="tab" data-tab="boys">Boys Categories</button>
+        <button type="button" class="tab" data-tab="sizes">Sizes</button>
+        <button type="button" class="tab" data-tab="colors">Colors</button>
+        <button type="button" class="tab" data-tab="settings">Settings</button>
+      </div>
+
+      <!-- Men -->
+      <div class="tab-panel active" data-panel="men">
+        <div class="custom-list" id="menList"></div>
+        <div class="add-row">
+          <input type="text" id="newMen" placeholder="New men category" />
+          <button type="button" class="btn btn-primary" id="addMen">Add</button>
+        </div>
+      </div>
+
+      <!-- Boys -->
+      <div class="tab-panel" data-panel="boys">
+        <div class="custom-list" id="boysList"></div>
+        <div class="add-row">
+          <input type="text" id="newBoys" placeholder="New boys category" />
+          <button type="button" class="btn btn-primary" id="addBoys">Add</button>
+        </div>
+      </div>
+
+      <!-- Sizes -->
+      <div class="tab-panel" data-panel="sizes">
+        <div class="custom-list" id="sizesList"></div>
+        <div class="add-row">
+          <input type="text" id="newSize" placeholder="New size (e.g. XXXL)" />
+          <button type="button" class="btn btn-primary" id="addSize">Add</button>
+        </div>
+      </div>
+
+      <!-- Settings -->
+      <div class="tab-panel" data-panel="settings">
+        <h4 style="margin-top:0; margin-bottom:12px; font-weight:400; color:var(--text);">Order Settings</h4>
+        
+        <label style="color:var(--muted); font-size:12px; margin-bottom:8px; display:block;">WhatsApp Number (for Orders)</label>
+        <div class="add-row" style="margin-bottom:10px;">
+          <input type="text" id="waNumber" placeholder="e.g. +94771234567" />
+          <button type="button" class="btn btn-primary" id="saveWaNumber">Save</button>
+        </div>
+        <p style="font-size:11px; color:#666; margin-top:-4px; margin-bottom:20px;">Include country code, e.g., +94 for Sri Lanka.</p>
+
+        <label style="color:var(--muted); font-size:12px; margin-bottom:8px; display:block;">Delivery Fee (LKR)</label>
+        <div class="add-row" style="margin-bottom:20px;">
+          <input type="number" id="deliveryFee" placeholder="e.g. 350" min="0" />
+          <button type="button" class="btn btn-primary" id="saveDeliveryFee">Save Fee</button>
+        </div>
+        
+        <hr style="border-top: 1px solid rgba(0, 0, 0, 0.08); margin: 20px 0; border-bottom: none; border-left: none; border-right: none;" />
+        
+        <h4 style="margin-top:0; margin-bottom:12px; font-weight:400; color:var(--text);">Bank Transfer Details</h4>
+        <div id="bankDetailsForm" style="display:flex; flex-direction:column; gap:12px;">
+          <div>
+            <label style="color:var(--muted); font-size:12px; margin-bottom:6px; display:block;">Bank Name</label>
+            <input type="text" id="bankName" placeholder="e.g. BANK OF CEYLON" />
+          </div>
+          <div>
+            <label style="color:var(--muted); font-size:12px; margin-bottom:6px; display:block;">Account Number</label>
+            <input type="text" id="bankAccount" placeholder="e.g. 0094609936" />
+          </div>
+          <div>
+            <label style="color:var(--muted); font-size:12px; margin-bottom:6px; display:block;">Account Name</label>
+            <input type="text" id="bankAccountName" placeholder="e.g. Ikram Fashion Outlet" />
+          </div>
+          <div class="grid-2" style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+            <div>
+              <label style="color:var(--muted); font-size:12px; margin-bottom:6px; display:block;">Branch</label>
+              <input type="text" id="bankBranch" placeholder="e.g. Galle" />
+            </div>
+            <div>
+              <label style="color:var(--muted); font-size:12px; margin-bottom:6px; display:block;">Remarks / Reference</label>
+              <input type="text" id="bankRemarks" placeholder="e.g. IFO Galle" />
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary full" id="saveBankDetails" style="margin-top:8px; width:100%;">Save Bank Details</button>
+        </div>
+      </div>
+
+      <!-- Colors -->
+      <div class="tab-panel" data-panel="colors">
+        <div class="custom-list" id="colorsList"></div>
+        <div class="add-row">
+          <input type="text" id="newColorName" placeholder="Color name" />
+          <input type="color" id="newColorValue" value="#3b82f6" />
+          <button type="button" class="btn btn-primary" id="addColor">Add</button>
+        </div>
+      </div>
+
+
+
+      <button type="button" class="btn btn-secondary full" id="resetDefaults" style="margin-top:1rem">Reset to Defaults</button>
+    </div>
+  </div>
+
+  <script src="/assets/js/admin.js"></script>
+  <script>
+    document.getElementById('logoutBtn').addEventListener('click', async () => {
+      if (confirm('Are you sure you want to log out?')) {
+        localStorage.removeItem('adminLoggedIn');
+        localStorage.removeItem('adminEmail');
+        if (window.supabaseClient) {
+          try {
+            await window.supabaseClient.auth.signOut();
+          } catch (err) {
+            console.error("Sign out error:", err);
+          }
+        }
+        window.location.href = '/admin/index.html';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Men's Premium Clothing & Fashion Collection — IFO Galle</title>
+  <link rel="icon" type="image/jpeg" href="/assets/img/logo.jpg" />
+  <meta name="description"
+    content="Explore the ultimate collection of premium men's clothing at IFO Galle, Sri Lanka. Shop tailored shirts, denim, linen pants, cotton trousers, and collar t-shirts from Polo Ralph Lauren, Hugo Boss, Armani Exchange, CK, and Levi's." />
+  <link rel="canonical" href="https://www.ifo.lk/men" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.ifo.lk/men" />
+  <meta property="og:title" content="Men's Premium Clothing & Fashion Collection — IFO Galle" />
+  <meta property="og:description" content="Shop premium menswear at IFO Galle. From casual collar t-shirts and linen pants to formal shirts and denim. High-quality imports in Sri Lanka." />
+  <meta property="og:image" content="https://www.ifo.lk/assets/img/category-men.jpg" />
+  <meta property="og:site_name" content="Ikram Fashion Outlet (IFO)" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://www.ifo.lk/men" />
+  <meta property="twitter:title" content="Men's Premium Clothing & Fashion Collection — IFO Galle" />
+  <meta property="twitter:description" content="Shop premium menswear at IFO Galle. From casual collar t-shirts and linen pants to formal shirts and denim. High-quality imports in Sri Lanka." />
+  <meta property="twitter:image" content="https://www.ifo.lk/assets/img/category-men.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+
+<body>
+ <header class="header">
+    <div class="header-inner">
+
+      <!-- LOGO -->
+      <a href="/" class="logo">
+
+        <!-- Company Logo -->
+        <img src="assets/img/logo.jpg" alt="Ikram Fashion Outlet Logo" class="logo-img">
+
+        <!-- Company Name -->
+        <div class="logo-text">
+          <h2>Ikram Fashion Outlet</h2>
+        </div>
+
+        <nav class="nav">
+          <a href="/" >Home</a>
+          <a href="/men" class="active">Men</a>
+          <a href="/boys">Boys</a>
+          <a href="/brands">Brands</a>
+        </nav>
+        <div class="icons">
+    <button class="bag" aria-label="Bag"><a href="/checkout">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
+        <path d="M3 6h18" />
+        <path d="M16 10a4 4 0 0 1-8 0" />
+      </svg></a>
+    </button>
+      <button class="icon-btn menu-btn" aria-label="Menu" data-menu><svg viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="1.5">
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg></button>
+    </div>
+    </div>
+  </header>
+
+  <aside class="drawer" data-drawer>
+    <button class="icon-btn close" data-close aria-label="Close">✕</button>
+    <a href="/">Home</a><a href="/men">Men</a><a href="/boys">Boys</a><a href="/brands">Brands</a>
+  </aside>
+
+  <section class="page-hero">
+    <img src="assets/img/category-men.jpg" alt="Premium Men's Clothing Collection - Ikram Fashion Outlet Galle" />
+    <div class="page-hero-inner">
+      <div>
+        <p class="eyebrow">Collection</p>
+        <h1>Men</h1>
+        <p>Modern essentials and statement pieces from 11 iconic Brands.</p>
+      </div>
+    </div>
+  </section>
+
+
+
+<!-- ============ CATALOG VIEW ============ -->
+<div id="catalog-view">
+  <main id="catalog-root">
+    <!-- Category rows injected by men.js -->
+  </main>
+</div>
+
+<!-- ============ PRODUCT DETAIL VIEW (scoped pd-* classes) ============ -->
+<div id="product-view" hidden>
+  <a href="#" class="pd-back" id="pd-back">← Back to catalog</a>
+
+  <article class="pd-wrapper">
+    <div class="pd-media">
+      <div class="pd-image-box">
+        <img id="pd-image" src="" alt="" />
+      </div>
+      <div class="pd-gallery" id="pd-gallery"></div>
+    </div>
+
+    <div class="pd-info">
+      <div>
+        <p class="pd-section-label" id="pd-category"></p>
+        <h1 class="pd-title" id="pd-title"></h1>
+      </div>
+
+      <p class="pd-price" id="pd-price"></p>
+      <p class="pd-desc" id="pd-desc"></p>
+
+      <div>
+        <p class="pd-section-label">Color: <span id="pd-color-name"></span></p>
+        <div class="pd-options" id="pd-colors"></div>
+      </div>
+
+      <div>
+        <p class="pd-section-label">Size</p>
+        <div class="pd-options" id="pd-sizes"></div>
+      </div>
+
+      <div>
+        <p class="pd-section-label">Quantity</p>
+        <div class="pd-qty">
+          <button class="pd-qty-btn" id="pd-qty-minus">−</button>
+          <input type="number" id="pd-qty-input" value="1" min="1" max="99" readonly />
+          <button class="pd-qty-btn" id="pd-qty-plus">+</button>
+        </div>
+      </div>
+
+      <button class="pd-cart-btn" id="pd-cart-btn">Add to Cart</button>
+    </div>
+  </article>
+</div>
+
+
+  <section class="container" style="padding:80px 24px 0">
+    <h2 style="font-size:28px;margin-bottom:40px">Shop by category</h2>
+    <div class="tile-grid" data-men-tiles></div>
+  </section>
+
+  <section class="container" style="padding:80px 24px 96px">
+    <h2 style="font-size:28px;margin-bottom:40px">Shop by brand</h2>
+    <div class="brand-cards" data-brand-cards></div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-base">
+        <p>© <span data-year></span> IFO - Ikram·Fashion·Outlet. All rights reserved.</p>
+        <p>Crafted with elegance.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/men.js"></script>
+</body>
+
+</html>

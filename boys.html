@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Boys' Fashion & Clothing Collection (Ages 4-16) — IFO Galle</title>
+  <link rel="icon" type="image/jpeg" href="/assets/img/logo.jpg" />
+  <meta name="description"
+    content="Shop premium boys' fashion and clothing at IFO Galle, Sri Lanka. Explore stylish and comfortable shirts, t-shirts, denim, and cotton/linen pants for kids and teenagers aged 4 to 16." />
+  <link rel="canonical" href="https://www.ifo.lk/boys" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.ifo.lk/boys" />
+  <meta property="og:title" content="Boys' Fashion & Clothing Collection (Ages 4-16) — IFO Galle" />
+  <meta property="og:description" content="Shop high-quality boys' apparel at IFO Galle. Premium comfort and style for ages 4 to 16. Casual shirts, durable denims, linen pants, and tees." />
+  <meta property="og:image" content="https://www.ifo.lk/assets/img/category-boys.jpg" />
+  <meta property="og:site_name" content="Ikram Fashion Outlet (IFO)" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://www.ifo.lk/boys" />
+  <meta property="twitter:title" content="Boys' Fashion & Clothing Collection (Ages 4-16) — IFO Galle" />
+  <meta property="twitter:description" content="Shop high-quality boys' apparel at IFO Galle. Premium comfort and style for ages 4 to 16. Casual shirts, durable denims, linen pants, and tees." />
+  <meta property="twitter:image" content="https://www.ifo.lk/assets/img/category-boys.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+
+<body>
+ <header class="header">
+    <div class="header-inner">
+
+      <!-- LOGO -->
+      <a href="/" class="logo">
+
+        <!-- Company Logo -->
+        <img src="assets/img/logo.jpg" alt="Ikram Fashion Outlet Logo" class="logo-img">
+
+        <!-- Company Name -->
+        <div class="logo-text">
+          <h2>Ikram Fashion Outlet</h2>
+        </div>
+
+        <nav class="nav">
+          <a href="/" >Home</a>
+          <a href="/men">Men</a>
+          <a href="/boys" class="active">Boys</a>
+          <a href="/brands">Brands</a>
+        </nav>
+        <div class="icons">
+    <button class="bag" aria-label="Bag"><a href="/checkout">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
+        <path d="M3 6h18" />
+        <path d="M16 10a4 4 0 0 1-8 0" />
+      </svg></a>
+    </button>
+      <button class="icon-btn menu-btn" aria-label="Menu" data-menu><svg viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="1.5">
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg></button>
+    </div>
+    </div>
+  </header>
+
+  <aside class="drawer" data-drawer>
+    <button class="icon-btn close" data-close aria-label="Close">✕</button>
+    <a href="/">Home</a><a href="/men">Men</a><a href="/boys">Boys</a><a href="/brands">Brands</a>
+  </aside>
+
+  <section class="page-hero">
+    <img src="assets/img/category-boys.jpg" alt="Premium Boys' Fashion & Kids Clothing Collection - Ikram Fashion Outlet Galle" />
+    <div class="page-hero-inner">
+      <div>
+        <p class="eyebrow">Collection</p>
+        <h1>Boys</h1>
+        <p>Stylish and comfortable outfits for the little ones.</p>
+      </div>
+    </div>
+  </section>
+
+
+
+<!-- ============ CATALOG VIEW ============ -->
+<div id="catalog-view">
+  <main id="catalog-root">
+    <!-- Category rows injected by boys.js -->
+  </main>
+</div>
+
+<!-- ============ PRODUCT DETAIL VIEW (scoped pd-* classes) ============ -->
+<div id="product-view" hidden>
+  <a href="#" class="pd-back" id="pd-back">← Back to catalog</a>
+
+  <article class="pd-wrapper">
+    <div class="pd-media">
+      <div class="pd-image-box">
+        <img id="pd-image" src="" alt="" />
+      </div>
+      <div class="pd-gallery" id="pd-gallery"></div>
+    </div>
+
+    <div class="pd-info">
+      <div>
+        <p class="pd-section-label" id="pd-category"></p>
+        <h1 class="pd-title" id="pd-title"></h1>
+      </div>
+
+      <p class="pd-price" id="pd-price"></p>
+      <p class="pd-desc" id="pd-desc"></p>
+
+      <div>
+        <p class="pd-section-label">Color: <span id="pd-color-name"></span></p>
+        <div class="pd-options" id="pd-colors"></div>
+      </div>
+
+      <div>
+        <p class="pd-section-label">Size</p>
+        <div class="pd-options" id="pd-sizes"></div>
+      </div>
+
+      <div>
+        <p class="pd-section-label">Quantity</p>
+        <div class="pd-qty">
+          <button class="pd-qty-btn" id="pd-qty-minus">−</button>
+          <input type="number" id="pd-qty-input" value="1" min="1" max="99" readonly />
+          <button class="pd-qty-btn" id="pd-qty-plus">+</button>
+        </div>
+      </div>
+
+      <button class="pd-cart-btn" id="pd-cart-btn">Add to Cart</button>
+    </div>
+  </article>
+</div>
+
+
+  <section class="container" style="padding:80px 24px 0">
+    <h2 style="font-size:28px;margin-bottom:40px">Shop by category</h2>
+    <div class="tile-grid" data-boys-tiles></div>
+  </section>
+
+  <section class="container" style="padding:80px 24px 96px">
+    <h2 style="font-size:28px;margin-bottom:40px">Shop by brand</h2>
+    <div class="brand-cards" data-brand-cards></div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-base">
+        <p>© <span data-year></span> IFO - Ikram·Fashion·Outlet. All rights reserved.</p>
+        <p>Crafted with elegance.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/boys.js"></script>
+</body>
+
+</html>

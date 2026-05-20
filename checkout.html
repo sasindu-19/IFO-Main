@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shopping Bag & Secure Checkout — IFO Galle</title>
+  <link rel="icon" type="image/jpeg" href="/assets/img/logo.jpg" />
+  <meta name="description" content="Review your shopping bag and complete your secure checkout at Ikram Fashion Outlet (IFO) Galle. Get secure door-step delivery across Sri Lanka." />
+  <link rel="canonical" href="https://www.ifo.lk/checkout" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="assets/css/checkstyles.css" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="/index" class="logo">
+        <img src="assets/img/logo.jpg" alt="Logo" class="logo-img">
+        <div class="logo-text"><h2>Ikram Fashion Outlet</h2></div>
+      </a>
+      <nav class="nav">
+        <a href="/">Home</a>
+        <a href="/men">Men</a>
+        <a href="/boys">Boys</a>
+        <a href="/brands">Brands</a>
+      </nav>
+      <div class="icons">
+        <button class="bag" aria-label="Bag">
+          <a href="/checkout">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" /><path d="M3 6h18" /><path d="M16 10a4 4 0 0 1-8 0" />
+            </svg>
+          </a>
+          <span class="bag-count">0</span>
+        </button>
+        <button class="icon-btn menu-btn" data-menu><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16M4 12h16M4 17h16" /></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <aside class="drawer" data-drawer>
+    <button class="icon-btn close" data-close>✕</button>
+    <a href="/">Home</a><a href="/men">Men</a><a href="/boys">Boys</a><a href="/brands">Brands</a>
+  </aside>
+
+  <main class="container main">
+    <div class="title fade-in">
+      <p class="eyebrow">Step 01 — Your Bag</p>
+      <h1>Review Your Selection</h1>
+      <p class="lede">Select what you need, fill out the Delivery Form here, checkout, and we will send you your details on auto whatsapp. After you make a bank transfer and send us the receipt, your delivery will arrive. We will accept 100% trust and responsibility.</p>
+    </div>
+
+    <div class="grid">
+      <section class="items" id="items"></section>
+
+
+      <aside class="summary-wrap">
+        <div class="summary slide-up">
+
+      <div class="form-box">
+    <h2>Delivery Form</h2>
+
+    <div class="input-group">
+        <label>Full Name</label>
+        <input type="text" id="name" placeholder="Enter your name">
+    </div>
+
+    <div class="input-group">
+        <label>Phone Number</label>
+        <input type="text" id="phone" placeholder="07xxxxxxxx">
+    </div>
+
+    <div class="input-group">
+        <label>Post Code</label>
+        <input type="text" id="postcode" placeholder="xxxxx">
+    </div>
+
+    <div class="input-group">
+        <label>District</label>
+        <select id="district">
+            <option>Ampara</option>
+            <option>Anuradhapura</option>
+            <option>Badulla</option>
+            <option>Batticaloa</option>
+            <option>Colombo</option>
+            <option>Galle</option>
+            <option>Gampaha</option>
+            <option>Hambantota</option>
+            <option>Jaffna</option>
+            <option>Kalutara</option>
+            <option>Kandy</option>
+            <option>Kegalle</option>
+            <option>Kilinochchi</option>
+            <option>Kurunegala</option>
+            <option>Mannar</option>
+            <option>Matale</option>
+            <option>Matara</option>
+            <option>Moneragala</option>
+            <option>Mullaitivu</option>
+            <option>Nuwara Eliya</option>
+            <option>Polonnaruwa</option>
+            <option>Puttalam</option>
+            <option>Ratnapura</option>
+            <option>Trincomalee</option>
+            <option>Vavuniya</option>
+        </select>
+    </div>
+
+    <div class="input-group">
+        <label>Delivery Address</label>
+        <textarea id="address" placeholder="Enter full address"></textarea>
+    </div>
+          <!-- Bank Details Card -->
+          <div class="bank-details-card" id="bankDetailsCard" style="display:none;">
+            <h3>Bank Transfer Details</h3>
+            <p class="bank-desc">Please transfer the total amount to the account below, then place your order. You can send the receipt/slip in WhatsApp chat.</p>
+            <div class="bank-info-grid">
+              <div class="bank-info-row">
+                <span class="bank-info-label">Bank Name</span>
+                <span class="bank-info-val" id="displayBankName">-</span>
+              </div>
+              <div class="bank-info-row">
+                <span class="bank-info-label">Account Number</span>
+                <div class="bank-account-copy-row">
+                  <span class="bank-info-val highlight-val" id="displayBankAccount">-</span>
+                  <button type="button" class="btn-copy" id="btnCopyAccount" title="Copy Account Number">
+                    <i class="bx bx-copy"></i> Copy
+                  </button>
+                </div>
+              </div>
+              <div class="bank-info-row">
+                <span class="bank-info-label">Account Name</span>
+                <span class="bank-info-val" id="displayBankAccountName">-</span>
+              </div>
+              <div class="bank-info-row">
+                <span class="bank-info-label">Branch & Remarks</span>
+                <span class="bank-info-val" id="displayBankBranchRemarks">-</span>
+              </div>
+            </div>
+          </div>
+
+          <h2>Order summary</h2>
+          <dl class="lines">
+            <div>
+              <dt>Subtotal (<span id="countLbl">0</span> items)</dt>
+              <dd id="subtotal">LKR 0</dd>
+            </div>
+            <div>
+              <dt>Shipping (Standard Delivery)</dt>
+              <dd id="shipping">Free</dd>
+            </div>
+          </dl>
+          <hr />
+          <div class="total">
+            <span>Total</span>
+            <strong id="total">LKR 0.00</strong>
+          </div>
+          <button class="btn btn-checkout" id="checkout">
+            Secure Checkout
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+          </button>
+        </div>
+      </aside>
+    </div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/checkout.js"></script>
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
