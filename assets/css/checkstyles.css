@@ -1125,7 +1125,7 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
     padding: 8px 12px;
   }
   .summary{
-    margin-left: 1px;
+    margin-left: 0px;
     padding: 0.8rem;
     gap: 0.8rem;
     border-radius: 16px;
