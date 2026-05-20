@@ -1099,6 +1099,10 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
     padding: 4px 8px;
     font-size: 10px;
   }
+  .summary-wrap{
+    width: 340px;
+    margin: -25px;
+  }
 }
 
 @media (max-width: 420px) {
