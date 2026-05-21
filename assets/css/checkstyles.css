@@ -1130,8 +1130,8 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
   }
   
   .item-img {
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     border-radius: 10px;
   }
   
