@@ -145,14 +145,6 @@ hr {
 }
 
 
-@media (min-width: 1024px) {
-  .grid {
-    grid-template-columns: 1fr 420px;
-  }
-    .summary{
-    grid-template-columns: 1fr 420px;
-  }
-}
 
 /* ITEMS */
 .items {
@@ -310,15 +302,8 @@ hr {
 /* SUMMARY */
 .summary-wrap {
   align-self: start;
-}
 
-@media (min-width: 1024px) {
-  .summary-wrap {
-    position: sticky;
-    top: 7rem;
-  }
 }
-
 .summary {
   background: var(--gradient-surface);
   border: 1px solid var(--border);
@@ -508,11 +493,6 @@ hr {
   margin-top: 2rem;
 }
 
-@media (min-width: 640px) {
-  .perks {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
 
 .perk {
   display: flex;
@@ -632,37 +612,10 @@ hr {
 .empty-cart a { margin-top: 1rem; display: inline-block; }
 
 
-@media (max-width: 768px) { 
-  .main { margin-top: 70px; padding: 2rem 1rem; }
-  .lede { font-size: 13px; line-height: 1.5; } 
-  .total strong { font-size: 1.5rem; }
-}
+
 
 h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
 
-@media (max-width: 600px) {
-  .header-inner { 
-    height: 70px; 
-    padding: 0 16px; 
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .logo-img { 
-    width: 42px; 
-    height: 42px; 
-    padding: 2px;
-  }
-
-  .logo-text h2 {
-    font-size: 16px;
-    font-weight: 500;
-  }
-}
 
 /* ===== Form Box Aesthetics ===== */
 .form-box {
@@ -1016,8 +969,61 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
   color: #22c55e !important;
 }
 
-/* ===== Responsive Mobile Media Queries ===== */
-@media (max-width: 600px) {
+
+/* ===== Responsive Tablet===== */
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 420px;
+  }
+    .summary{
+    grid-template-columns: 1fr 420px;
+  }  
+  .summary-wrap {
+    position: sticky;
+    top: 7rem;
+    margin-top: -208px;
+  }
+}
+
+/* ===== Responsive Mobile ===== */
+@media (max-width: 768px) { 
+
+  .main { 
+    margin-top: 70px; 
+    padding: 2rem 1rem; 
+  }
+  .lede { 
+    font-size: 13px; 
+    line-height: 1.5; 
+  } 
+  .total strong { 
+    font-size: 1.5rem; 
+  }
+
+  .header-inner { 
+    height: 70px; 
+    padding: 0 16px; 
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .logo-img { 
+    width: 42px; 
+    height: 42px; 
+    padding: 2px;
+  }
+
+  .logo-text h2 {
+    font-size: 16px;
+    font-weight: 500;
+  }  
+  .perks {
+    grid-template-columns: repeat(3, 1fr);
+  }
   .item {
     padding: 0.8rem;
     gap: 0.8rem;
@@ -1102,33 +1108,105 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
     padding: 4px 8px;
     font-size: 10px;
   }
+  .grid-empty{
+    padding: 15px;
+  }
+  .grid-empty .empty-box{
+    max-width: 100%;
+    padding: 80px 20px;
+    border-radius: 24px;
+  }
 
-.summary{
-    padding: 0.8rem;
-    gap: 0.8rem;
-    border-radius: 16px;
-    width: 330px;
 }
-.grid{
-  margin-left: -50px;
-}
-}
+
+/* ===== Responsive small ===== */
 @media (max-width: 420px) {
-  .bank-account-copy-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
-  .btn-copy {
-    width: 100%;
-    justify-content: center;
-    padding: 8px 12px;
-  }
-  .summary{
-    margin-left: 0px;
+
+  .item {
     padding: 0.8rem;
     gap: 0.8rem;
     border-radius: 16px;
-    width: 365px;
   }
+  
+  .item-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+  }
+  
+  .item-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+  }
+
+  .item-info h3 {
+    font-size: 14px !important;
+    font-weight: 500;
+    margin: 0 0 2px 0;
+    line-height: 1.3;
+  }
+  
+  .item-meta {
+    font-size: 9px;
+    letter-spacing: 0.08em;
+  }
+  
+  .item-controls {
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .item-qty {
+    padding: 2px 6px;
+    gap: 6px;
+    border-radius: 6px;
+  }
+  
+  .item-qty button {
+    font-size: 0.95rem;
+    width: 20px;
+    height: 20px;
+  }
+  
+  .item-qty span {
+    font-size: 12px;
+  }
+
+  .item-price {
+    font-size: 13.5px;
+    font-weight: 600;
+  }
+  
+  .item-remove {
+    font-size: 10.5px;
+    margin-top: 4px;
+    align-self: flex-start;
+  }
+    .grid-empty{
+    padding: 15px;
+  }
+  .grid-empty .empty-box{
+    max-width: 100%;
+    padding: 80px 20px;
+    border-radius: 24px;
+  }
+  .grid{
+    margin-left: -20px;
+  }
+    .grid-empty{
+    padding: 15px;
+    margin-left: 10px;
+  }
+  .grid-empty .empty-box{
+    max-width: 100%;
+    padding: 80px 20px;
+    border-radius: 24px;
+  }
+
 }
