@@ -1906,3 +1906,8 @@ padding:10px 10px
   margin-bottom: -110px;
  }
 }
+@media (max-width: 420px) {
+  .card{
+    width: 300px;
+  }
+}
